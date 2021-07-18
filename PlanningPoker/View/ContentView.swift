@@ -10,17 +10,19 @@ struct ParticipantsSection: View {
             .sorted { $0.id.uuidString < $1.id.uuidString }
     }
     
+    var areAllParticipantsPlayed: Bool {
+        session.activeParticipants.count == playedCards.count
+    }
+    
     var body: some View {
         Section(header: Text("参加者")) {
-            ForEach(participants, id: \.id) { participant in
+            ForEach(Array(participants.enumerated()), id: \.element.id) { index, participant in
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(participant.id.uuidString)
-                        
-                        Spacer()
-                        
                         if let card = playedCards.first(where: { $0.participantID == participant.id })?.card {
-                            Text(card.value.description)
+                            let isMyself = participant.id == session.localParticipant.id
+                            let isHidden = !isMyself && !areAllParticipantsPlayed
+                            Text(isHidden ? "🙈" : card.value.description)
                         } else {
                             ProgressView()
                         }
