@@ -64,10 +64,6 @@ struct ContentView: View {
                 }
             }
             
-            Section(header: Text("操作")) {
-                Button("リセット") { game.reset() }
-            }
-            
             Section(header: Text("カード")) {
                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem()]) {
                     ForEach(Card.all, id: \.self) { card in
@@ -79,6 +75,10 @@ struct ContentView: View {
                         .tint(game.isCardSelected(card) ? .blue : nil)
                     }
                 }
+            }
+            
+            Section(header: Text("操作")) {
+                Button("リセット") { game.reset() }
             }
         }
         .task {
