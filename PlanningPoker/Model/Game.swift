@@ -80,13 +80,13 @@ final class Game: ObservableObject {
             .first { $0.participantID == myself.id }?.card == card
     }
     
-    func handle(_ message: PlayCardMessage, from participant: Participant) {
+    private func handle(_ message: PlayCardMessage, from participant: Participant) {
         var cards = playedCards.filter { $0.participantID != participant.id }
         cards.append(PlayedCard(card: message.card, participantID: participant.id))
         playedCards = cards
     }
     
-    func handle(_ message: SyncMessage) {
+    private func handle(_ message: SyncMessage) {
         playedCards = message.playedCards
     }
 }
