@@ -76,6 +76,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .disabled(game.groupSession?.activeParticipants.count == game.playedCards.count)
             
             Section(header: Text("操作")) {
                 Button("リセット") { game.reset() }
