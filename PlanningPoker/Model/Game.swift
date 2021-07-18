@@ -6,6 +6,7 @@ import GroupActivities
 @MainActor
 final class Game: ObservableObject {
     @Published private(set) var groupSession: GroupSession<PlanningPoker>?
+    @Published private(set) var playedCards: [PlayedCard] = []
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -25,5 +26,24 @@ final class Game: ObservableObject {
     
     func startSharing() {
         PlanningPoker().activate()
+    }
+    
+    func playCard(_ card: Card) {
+        guard let myself = groupSession?.localParticipant else {
+            return
+        }
+        
+        var cards = playedCards.filter { $0.participantID != myself.id }
+        cards.append(PlayedCard(card: card, participantID: myself.id))
+        playedCards = cards
+    }
+    
+    func isCardSelected(_ card: Card) -> Bool {
+        guard let myself = groupSession?.localParticipant else {
+            return false
+        }
+        
+        return playedCards
+            .first { $0.participantID == myself.id }?.card == card
     }
 }

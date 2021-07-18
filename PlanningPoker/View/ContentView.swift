@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ParticipantsSection: View {
     @ObservedObject var session: GroupSession<PlanningPoker>
+    var playedCards: [PlayedCard]
     
     var participants: [Participant] {
         session.activeParticipants
@@ -18,7 +19,11 @@ struct ParticipantsSection: View {
                         
                         Spacer()
                         
-                        ProgressView()
+                        if let card = playedCards.first(where: { $0.participantID == participant.id })?.card {
+                            Text(card.value.description)
+                        } else {
+                            ProgressView()
+                        }
                     }
                     
                     if participant.id == session.localParticipant.id {
@@ -33,15 +38,13 @@ struct ParticipantsSection: View {
 }
 
 struct ContentView: View {
-    @State var selectedCard: Card?
-    
     @StateObject var game = Game()
     @StateObject var groupStateObserver = GroupStateObserver()
     
     var body: some View {
         List {
             if let session = game.groupSession {
-                ParticipantsSection(session: session)
+                ParticipantsSection(session: session, playedCards: game.playedCards)
             } else {
                 Section {
                     Text("🙈FaceTimeを開始してSharePlayに参加してください")
@@ -60,18 +63,18 @@ struct ContentView: View {
             }
             
             Section(header: Text("操作")) {
-                Button("リセット", action: reset)
+                Button("リセット") {}
             }
             
             Section(header: Text("カード")) {
                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem()]) {
                     ForEach(Card.all, id: \.self) { card in
-                        Button(action: { selectedCard = card }) {
+                        Button(action: { game.playCard(card) }) {
                             Text(card.value.description)
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.bordered)
-                        .tint(selectedCard == card ? .blue : nil)
+                        .tint(game.isCardSelected(card) ? .blue : nil)
                     }
                 }
             }
@@ -81,10 +84,6 @@ struct ContentView: View {
                 game.configureGroupSession(session)
             }
         }
-    }
-    
-    func reset() {
-        selectedCard = nil
     }
 }
 

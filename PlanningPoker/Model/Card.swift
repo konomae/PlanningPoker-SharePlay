@@ -1,4 +1,4 @@
-struct Card: Hashable {
+struct Card: Hashable, Codable {
     var value: Int
 }
 
