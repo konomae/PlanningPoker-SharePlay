@@ -65,7 +65,7 @@ struct ContentView: View {
             }
             
             Section(header: Text("操作")) {
-                Button("リセット") {}
+                Button("リセット") { game.reset() }
             }
             
             Section(header: Text("カード")) {

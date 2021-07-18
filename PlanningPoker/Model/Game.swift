@@ -80,6 +80,13 @@ final class Game: ObservableObject {
             .first { $0.participantID == myself.id }?.card == card
     }
     
+    func reset() {
+        playedCards = []
+        Task {
+            try? await messenger?.send(SyncMessage(playedCards: []))
+        }
+    }
+    
     private func handle(_ message: PlayCardMessage, from participant: Participant) {
         var cards = playedCards.filter { $0.participantID != participant.id }
         cards.append(PlayedCard(card: message.card, participantID: participant.id))
