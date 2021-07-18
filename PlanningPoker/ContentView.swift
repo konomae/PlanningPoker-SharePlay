@@ -1,3 +1,4 @@
+import GroupActivities
 import SwiftUI
 
 struct ContentView: View {
@@ -8,6 +9,7 @@ struct ContentView: View {
     @State var selectedCard: Int?
     
     @StateObject var game = Game()
+    @StateObject var groupStateObserver = GroupStateObserver()
     
     var body: some View {
         List {
@@ -30,6 +32,18 @@ struct ContentView: View {
                     Spacer()
                     
                     ProgressView()
+                }
+                
+                if game.groupSession == nil && groupStateObserver.isEligibleForGroupSession {
+                    Button {
+                        game.startSharing()
+                    } label: {
+                        HStack {
+                            Image(systemName: "person.2.fill")
+                            
+                            Text("SharePlay に参加")
+                        }
+                    }
                 }
                 
                 Button("リセット", action: reset)

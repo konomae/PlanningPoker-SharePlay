@@ -22,4 +22,8 @@ final class Game: ObservableObject {
         
         groupSession.join()
     }
+    
+    func startSharing() {
+        PlanningPoker().activate()
+    }
 }
