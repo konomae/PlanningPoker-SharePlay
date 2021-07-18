@@ -11,6 +11,7 @@
 		F73A2D9126A404F500137EF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73A2D9026A404F500137EF0 /* ContentView.swift */; };
 		F73A2D9326A404F500137EF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73A2D9226A404F500137EF0 /* Assets.xcassets */; };
 		F73A2D9626A404F500137EF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */; };
+		F78D861926A4093F00B3E1A9 /* PlanningPoker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		F73A2D9226A404F500137EF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
+		F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPoker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */,
 				F73A2D8E26A404F500137EF0 /* PlanningPokerApp.swift */,
 				F73A2D9026A404F500137EF0 /* ContentView.swift */,
+				F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */,
 				F73A2D9226A404F500137EF0 /* Assets.xcassets */,
 				F73A2D9426A404F500137EF0 /* Preview Content */,
 			);
@@ -141,6 +144,7 @@
 			files = (
 				F73A2D9126A404F500137EF0 /* ContentView.swift in Sources */,
 				F73A2D8F26A404F500137EF0 /* PlanningPokerApp.swift in Sources */,
+				F78D861926A4093F00B3E1A9 /* PlanningPoker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
