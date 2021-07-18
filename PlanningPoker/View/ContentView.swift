@@ -15,17 +15,21 @@ struct ParticipantsSection: View {
     }
     
     var body: some View {
+        Section {
+            ForEach(Array(participants.enumerated()), id: \.element.id) { index, participant in
+                Text(participant.id.uuidString)
+            }
+        }
+        
         Section(header: Text("参加者")) {
             ForEach(Array(participants.enumerated()), id: \.element.id) { index, participant in
                 VStack(alignment: .leading) {
-                    HStack {
-                        if let card = playedCards.first(where: { $0.participantID == participant.id })?.card {
-                            let isMyself = participant.id == session.localParticipant.id
-                            let isHidden = !isMyself && !areAllParticipantsPlayed
-                            Text(isHidden ? "🙈" : card.value.description)
-                        } else {
-                            ProgressView()
-                        }
+                    if let card = playedCards.first(where: { $0.participantID == participant.id })?.card {
+                        let isMyself = participant.id == session.localParticipant.id
+                        let isHidden = !isMyself && !areAllParticipantsPlayed
+                        Text(isHidden ? "🙈" : card.value.description)
+                    } else {
+                        Text("🤔")
                     }
                     
                     if participant.id == session.localParticipant.id {
