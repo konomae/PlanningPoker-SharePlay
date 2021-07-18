@@ -28,6 +28,9 @@ final class Game: ObservableObject {
         groupSession.$activeParticipants
             .sink { activeParticipants in
                 let newParticipants = activeParticipants.subtracting(groupSession.activeParticipants)
+                let ids = activeParticipants.map(\.id)
+                
+                self.playedCards = self.playedCards.filter { ids.contains($0.participantID) }
 
                 Task {
                     try? await messenger.send(SyncMessage(playedCards: self.playedCards), to: .only(newParticipants))
