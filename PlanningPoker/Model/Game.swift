@@ -21,6 +21,11 @@ final class Game: ObservableObject {
             .sink { state in
                 if case .invalidated = state {
                     self.groupSession = nil
+                    self.messenger = nil
+                    self.subscriptions = []
+                    self.tasks.forEach { $0.cancel() }
+                    self.tasks = []
+                    self.playedCards = []
                 }
             }
             .store(in: &subscriptions)
