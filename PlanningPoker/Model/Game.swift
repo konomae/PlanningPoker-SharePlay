@@ -25,10 +25,28 @@ final class Game: ObservableObject {
             }
             .store(in: &subscriptions)
         
+        groupSession.$activeParticipants
+            .sink { activeParticipants in
+                let newParticipants = activeParticipants.subtracting(groupSession.activeParticipants)
+
+                Task {
+                    try? await messenger.send(SyncMessage(playedCards: self.playedCards), to: .only(newParticipants))
+                }
+            }
+            .store(in: &subscriptions)
+        
         tasks.insert(
             Task {
                 for await (message, context) in messenger.messages(of: PlayCardMessage.self) {
                     handle(message, from: context.source)
+                }
+            }
+        )
+        
+        tasks.insert(
+            Task {
+                for await (message, _) in messenger.messages(of: SyncMessage.self) {
+                    handle(message)
                 }
             }
         )
@@ -66,5 +84,9 @@ final class Game: ObservableObject {
         var cards = playedCards.filter { $0.participantID != participant.id }
         cards.append(PlayedCard(card: message.card, participantID: participant.id))
         playedCards = cards
+    }
+    
+    func handle(_ message: SyncMessage) {
+        playedCards = message.playedCards
     }
 }

@@ -11,6 +11,7 @@
 		F73A2D9126A404F500137EF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73A2D9026A404F500137EF0 /* ContentView.swift */; };
 		F73A2D9326A404F500137EF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73A2D9226A404F500137EF0 /* Assets.xcassets */; };
 		F73A2D9626A404F500137EF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */; };
+		F75EBBFF26A4659E0051E066 /* SyncMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75EBBFE26A4659E0051E066 /* SyncMessage.swift */; };
 		F78D861926A4093F00B3E1A9 /* PlanningPoker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */; };
 		F78D861B26A4147C00B3E1A9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D861A26A4147C00B3E1A9 /* Game.swift */; };
 		F78D862326A4239100B3E1A9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D862226A4239100B3E1A9 /* Card.swift */; };
@@ -25,6 +26,7 @@
 		F73A2D9226A404F500137EF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
+		F75EBBFE26A4659E0051E066 /* SyncMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncMessage.swift; sourceTree = "<group>"; };
 		F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPoker.swift; sourceTree = "<group>"; };
 		F78D861A26A4147C00B3E1A9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F78D862226A4239100B3E1A9 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				F78D862226A4239100B3E1A9 /* Card.swift */,
 				F78D862426A4575200B3E1A9 /* PlayerdCard.swift */,
 				F78D862626A457BD00B3E1A9 /* PlayCardMessage.swift */,
+				F75EBBFE26A4659E0051E066 /* SyncMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				F78D861926A4093F00B3E1A9 /* PlanningPoker.swift in Sources */,
 				F78D862726A457BD00B3E1A9 /* PlayCardMessage.swift in Sources */,
 				F78D861B26A4147C00B3E1A9 /* Game.swift in Sources */,
+				F75EBBFF26A4659E0051E066 /* SyncMessage.swift in Sources */,
 				F78D862526A4575200B3E1A9 /* PlayerdCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

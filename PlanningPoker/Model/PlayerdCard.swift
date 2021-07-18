@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlayedCard {
+struct PlayedCard: Codable {
     var card: Card
     var participantID: UUID
 }
