@@ -12,13 +12,19 @@ struct ParticipantsSection: View {
     var body: some View {
         Section(header: Text("参加者")) {
             ForEach(participants, id: \.id) { participant in
-                HStack {
-                    Text(participant.id.uuidString)
-                    
-                    Spacer()
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(participant.id.uuidString)
+                        
+                        Spacer()
+                        
+                        ProgressView()
+                    }
                     
                     if participant.id == session.localParticipant.id {
                         Text("自分")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
                     }
                 }
             }
@@ -54,18 +60,6 @@ struct ContentView: View {
             }
             
             Section(header: Text("操作")) {
-                HStack {
-                    if selectedCard == nil {
-                        Text("カードを選択してください")
-                    } else {
-                        Text("他のユーザーの投票待ち")
-                    }
-                    
-                    Spacer()
-                    
-                    ProgressView()
-                }
-                
                 Button("リセット", action: reset)
             }
             
