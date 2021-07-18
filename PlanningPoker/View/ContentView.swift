@@ -37,8 +37,19 @@ struct ContentView: View {
             if let session = game.groupSession {
                 ParticipantsSection(session: session)
             } else {
-                HStack {
-                    Text("🙈FaceTimeを開始してください")
+                Section {
+                    Text("🙈FaceTimeを開始してSharePlayに参加してください")
+                    
+                    Button {
+                        game.startSharing()
+                    } label: {
+                        HStack {
+                            Image(systemName: "person.2.fill")
+                            
+                            Text("SharePlayに参加")
+                        }
+                    }
+                    .disabled(!groupStateObserver.isEligibleForGroupSession)
                 }
             }
             
@@ -53,18 +64,6 @@ struct ContentView: View {
                     Spacer()
                     
                     ProgressView()
-                }
-                
-                if game.groupSession == nil && groupStateObserver.isEligibleForGroupSession {
-                    Button {
-                        game.startSharing()
-                    } label: {
-                        HStack {
-                            Image(systemName: "person.2.fill")
-                            
-                            Text("SharePlay に参加")
-                        }
-                    }
                 }
                 
                 Button("リセット", action: reset)
