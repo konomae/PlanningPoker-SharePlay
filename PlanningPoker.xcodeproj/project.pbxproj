@@ -19,6 +19,7 @@
 		F73A2D9026A404F500137EF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F73A2D9226A404F500137EF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 		F73A2D8D26A404F500137EF0 /* PlanningPoker */ = {
 			isa = PBXGroup;
 			children = (
+				F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */,
 				F73A2D8E26A404F500137EF0 /* PlanningPokerApp.swift */,
 				F73A2D9026A404F500137EF0 /* ContentView.swift */,
 				F73A2D9226A404F500137EF0 /* Assets.xcassets */,
@@ -266,6 +268,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
@@ -294,6 +297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
