@@ -1,6 +1,31 @@
 import GroupActivities
 import SwiftUI
 
+struct ParticipantsSection: View {
+    @ObservedObject var session: GroupSession<PlanningPoker>
+    
+    var participants: [Participant] {
+        session.activeParticipants
+            .sorted { $0.id.uuidString < $1.id.uuidString }
+    }
+    
+    var body: some View {
+        Section(header: Text("参加者")) {
+            ForEach(participants, id: \.id) { participant in
+                HStack {
+                    Text(participant.id.uuidString)
+                    
+                    Spacer()
+                    
+                    if participant.id == session.localParticipant.id {
+                        Text("自分")
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     var cards: [Int] = [
         1, 2, 3, 5, 8, 13, 21, 34, 55, 89
@@ -13,11 +38,11 @@ struct ContentView: View {
     
     var body: some View {
         List {
-            Section(header: Text("参加者")) {
+            if let session = game.groupSession {
+                ParticipantsSection(session: session)
+            } else {
                 HStack {
-                    Text("🐶")
-                    
-                    Text("1")
+                    Text("🙈FaceTimeを開始してください")
                 }
             }
             
