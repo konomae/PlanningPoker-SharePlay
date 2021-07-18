@@ -8,10 +8,14 @@ final class Game: ObservableObject {
     @Published private(set) var groupSession: GroupSession<PlanningPoker>?
     @Published private(set) var playedCards: [PlayedCard] = []
     
+    private var messenger: GroupSessionMessenger?
     private var subscriptions = Set<AnyCancellable>()
+    private var tasks = Set<Task<Void, Never>>()
     
     func configureGroupSession(_ groupSession: GroupSession<PlanningPoker>) {
         self.groupSession = groupSession
+        let messenger = GroupSessionMessenger(session: groupSession)
+        self.messenger = messenger
         
         groupSession.$state
             .sink { state in
@@ -20,6 +24,14 @@ final class Game: ObservableObject {
                 }
             }
             .store(in: &subscriptions)
+        
+        tasks.insert(
+            Task {
+                for await (message, context) in messenger.messages(of: PlayCardMessage.self) {
+                    handle(message, from: context.source)
+                }
+            }
+        )
         
         groupSession.join()
     }
@@ -33,9 +45,12 @@ final class Game: ObservableObject {
             return
         }
         
-        var cards = playedCards.filter { $0.participantID != myself.id }
-        cards.append(PlayedCard(card: card, participantID: myself.id))
-        playedCards = cards
+        let message = PlayCardMessage(card: card)
+        handle(message, from: myself)
+        
+        Task {
+            try? await messenger?.send(message)
+        }
     }
     
     func isCardSelected(_ card: Card) -> Bool {
@@ -45,5 +60,11 @@ final class Game: ObservableObject {
         
         return playedCards
             .first { $0.participantID == myself.id }?.card == card
+    }
+    
+    func handle(_ message: PlayCardMessage, from participant: Participant) {
+        var cards = playedCards.filter { $0.participantID != participant.id }
+        cards.append(PlayedCard(card: message.card, participantID: participant.id))
+        playedCards = cards
     }
 }
