@@ -56,11 +56,10 @@
 		F73A2D8D26A404F500137EF0 /* PlanningPoker */ = {
 			isa = PBXGroup;
 			children = (
+				F78D861F26A41FB200B3E1A9 /* View */,
+				F78D861E26A41FA300B3E1A9 /* Model */,
 				F73A2D9C26A4087300137EF0 /* PlanningPoker.entitlements */,
 				F73A2D8E26A404F500137EF0 /* PlanningPokerApp.swift */,
-				F73A2D9026A404F500137EF0 /* ContentView.swift */,
-				F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */,
-				F78D861A26A4147C00B3E1A9 /* Game.swift */,
 				F73A2D9226A404F500137EF0 /* Assets.xcassets */,
 				F73A2D9426A404F500137EF0 /* Preview Content */,
 			);
@@ -73,6 +72,23 @@
 				F73A2D9526A404F500137EF0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F78D861E26A41FA300B3E1A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F78D861826A4093F00B3E1A9 /* PlanningPoker.swift */,
+				F78D861A26A4147C00B3E1A9 /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F78D861F26A41FB200B3E1A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F73A2D9026A404F500137EF0 /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
