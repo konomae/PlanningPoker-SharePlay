@@ -27,11 +27,7 @@ struct ParticipantsSection: View {
 }
 
 struct ContentView: View {
-    var cards: [Int] = [
-        1, 2, 3, 5, 8, 13, 21, 34, 55, 89
-    ]
-    
-    @State var selectedCard: Int?
+    @State var selectedCard: Card?
     
     @StateObject var game = Game()
     @StateObject var groupStateObserver = GroupStateObserver()
@@ -76,9 +72,9 @@ struct ContentView: View {
             
             Section(header: Text("カード")) {
                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem()]) {
-                    ForEach(cards, id: \.self) { card in
-                        Button(role: .cancel, action: { selectedCard = card }) {
-                            Text(card.description)
+                    ForEach(Card.all, id: \.self) { card in
+                        Button(action: { selectedCard = card }) {
+                            Text(card.value.description)
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.bordered)
