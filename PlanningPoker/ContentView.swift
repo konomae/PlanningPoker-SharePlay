@@ -7,6 +7,8 @@ struct ContentView: View {
     
     @State var selectedCard: Int?
     
+    @StateObject var game = Game()
+    
     var body: some View {
         List {
             Section(header: Text("参加者")) {
@@ -44,6 +46,11 @@ struct ContentView: View {
                         .tint(selectedCard == card ? .blue : nil)
                     }
                 }
+            }
+        }
+        .task {
+            for await session in PlanningPoker.sessions() {
+                game.configureGroupSession(session)
             }
         }
     }
