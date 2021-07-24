@@ -8,7 +8,13 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if let session = game.groupSession {
-                GameView(game: game, session: session)
+                SessionView(game: game, session: session) { gameState in
+                    GameView(
+                        state: gameState,
+                        playCard: { game.playCard($0) },
+                        reset: { game.reset() }
+                    )
+                }
             } else {
                 WaitingRoomView(
                     isEligibleForGroupSession: groupStateObserver.isEligibleForGroupSession,
@@ -21,6 +27,22 @@ struct ContentView: View {
                 game.configureGroupSession(session)
             }
         }
+    }
+}
+
+private struct SessionView<Content: View>: View {
+    @ObservedObject var game: Game
+    @ObservedObject var session: GroupSession<PlanningPoker>
+    @ViewBuilder var content: (GameState) -> Content
+    
+    var body: some View {
+        content(
+            GameState(
+                activeParticipants: session.activeParticipants,
+                localParticipant: session.localParticipant,
+                playedCards: game.playedCards
+            )
+        )
     }
 }
 
