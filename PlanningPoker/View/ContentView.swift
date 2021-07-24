@@ -27,9 +27,9 @@ struct ParticipantsSection: View {
                     if let card = playedCards.first(where: { $0.participantID == participant.id })?.card {
                         let isMyself = participant.id == session.localParticipant.id
                         let isHidden = !isMyself && !areAllParticipantsPlayed
-                        Text(isHidden ? "🙈" : card.value.description)
+                        Text(isHidden ? "🙆‍♂️ 決定" : card.value.description)
                     } else {
-                        Text("🤔")
+                        Text("🤔 考え中")
                     }
                     
                     if participant.id == session.localParticipant.id {
