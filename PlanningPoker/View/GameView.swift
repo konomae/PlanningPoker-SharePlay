@@ -8,12 +8,6 @@ struct GameView: View {
     
     var body: some View {
         List {
-            Section {
-                ForEach(state.activeParticipants, id: \.self) { participant in
-                    Text(participant.uuidString)
-                }
-            }
-            
             Section(header: Text("参加者")) {
                 ForEach(state.activeParticipants, id: \.self) { participant in
                     VStack(alignment: .leading) {
